@@ -1,0 +1,11 @@
+dockergen:
+    image: hairmare/nginx-proxy-hostlist
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+
+nginx:
+    image: nginx
+    volumes_from:
+        - dockergen
+    environment:
+        VIRTUAL_HOST: hostlist.vcap.me

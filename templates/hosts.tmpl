@@ -1,0 +1,1 @@
+{"hosts": [{{range $index, $host := whereExist . "Env.VIRTUAL_HOST"}}{{if $index}},{{end}}{{json $host.Env.VIRTUAL_HOST}}{{end}}]}
