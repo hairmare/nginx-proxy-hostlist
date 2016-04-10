@@ -1,0 +1,13 @@
+# docker build -t hostlist .  && docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock:ro hostlist
+
+dockergen:
+    build: .
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+
+nginx:
+    image: nginx
+    volumes_from:
+        - dockergen
+    environment:
+        VIRTUAL_HOST: hostlist.vcap.me
