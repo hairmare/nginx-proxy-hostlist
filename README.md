@@ -6,14 +6,15 @@ A simple companion service to [jwilder/nginx-proxy](https://github.com/jwilder/n
 
 See the `docker-compose.yml` for how this is intended to be set up. You will certainly will want to change the `VIRTUAL_HOST` entry in the file to match you deploy.
 
-## Build
-
-```
-docker-compose build
-```
-
-## Run
+## Run from Docker Hub
 
 ```
 docker-compose up -d
+```
+
+## Build and run locally
+
+```
+docker-compose -f dev.yml build
+docker-compose -f dev.yml up -d
 ```
