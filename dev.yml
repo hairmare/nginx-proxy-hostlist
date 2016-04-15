@@ -1,10 +1,10 @@
 dockergen:
-    build: .
+    build: dockergen/
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock:ro
 
 nginx:
-    image: nginx
+    build: web/
     volumes_from:
         - dockergen
     environment:
