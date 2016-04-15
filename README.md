@@ -25,5 +25,5 @@ docker-compose -f dev.yml up -d
 
 ```
 docker run -d --name hostlist -v /var/run/docker.sock:/var/run/docker.sock:ro hairmare/nginx-proxy-hostlist
-docker run -d --volumes-from hostlist
+docker run -d --volumes-from hostlist -e VIRTUAL_HOST=hostlist.vcap.me hairmare/nginx-proxy-hostlist-web
 ```
