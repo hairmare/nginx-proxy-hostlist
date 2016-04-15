@@ -8,16 +8,12 @@ RUN apk update && apk add openssl \
     && mv docker-gen /usr/local/bin/ \
     && rm -rf docker-gen-alpine-linux-amd64-$DOCKER_GEN_VERSION.tar.gz \
     && rm -rf /var/cache/apk/* \
-    && mkdir -p /var/www/api
+    && mkdir -p /usr/local/share/api
 
 COPY templates /etc/docker-gen/templates
-COPY web /usr/local/share/web
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY notify.sh /usr/local/bin/notify.sh
 
-VOLUME "/var/www/"
-VOLUME "/etc/nginx/conf.d/"
-VOLUME "/usr/local/share/web"
+VOLUME "/usr/local/share/api"
 
 ENTRYPOINT ["/usr/local/bin/docker-gen"]
-CMD ["-watch", "-notify", "/usr/local/bin/notify.sh", "/etc/docker-gen/templates/hosts.tmpl", "/var/www/api/index.json"]
+CMD ["-watch", "-notify", "/usr/local/bin/notify.sh", "/etc/docker-gen/templates/hosts.tmpl", "/usr/local/share/api/index.json"]
